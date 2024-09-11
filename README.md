@@ -29,10 +29,10 @@ This project provides insights into the COVID-19 pandemic using SQL queries to e
 
 ### Data Selection
 
-```sql
+sql
 select *
 from PortfolioProject..CovidDeaths
 where continent is not null
-order by 3,4;```
+order by 3,4
 
 ### Data Selection
