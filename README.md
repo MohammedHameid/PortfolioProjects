@@ -35,7 +35,7 @@ from PortfolioProject..CovidDeaths
 where continent is not null
 order by 3,4;```
 
-Total Cases vs Deaths
+### Total Cases vs Deaths
 sql
 Copy code
 select Location, Date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
