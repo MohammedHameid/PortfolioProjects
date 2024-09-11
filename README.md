@@ -36,7 +36,7 @@ where continent is not null
 order by 3,4
 ```
 ### Total Cases vs Deaths
-```
+```sql
 select Location, Date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
 from PortfolioProject..CovidDeaths
 where location like '%states%'
@@ -45,14 +45,14 @@ order by 1,2;
 ```
 
 ### Total Cases vs Population
-```
+```sql
 select Location, date, population, total_cases, (total_cases/population)*100 as PercentPopulationInfected
 from PortfolioProject..CovidDeaths
 order by 1,2;
 
 ```
 ### Highest Infection Rates
-```
+```sql
 select Location, population, max(total_cases) as HighestInfectionCount, max(total_cases/population)*100 as PercentPopulationInfected
 from PortfolioProject..CovidDeaths
 group by Location, population
@@ -60,7 +60,7 @@ order by PercentPopulationInfected desc;
 
 ```
 ### Highest Death Counts
-```
+```sql
 select Location, max(cast(total_deaths as int)) as TotalDeathCount
 from PortfolioProject..CovidDeaths
 where continent is not null
@@ -70,7 +70,7 @@ order by TotalDeathCount desc;
 ```
 
 ### Continental Analysis
-```
+```sql
 select continent, max(cast(total_deaths as int)) as TotalDeathCount
 from PortfolioProject..CovidDeaths
 where continent is not null
@@ -79,7 +79,7 @@ order by TotalDeathCount desc;
 
 ```
 ### Global Statistics
-```
+```sql
 select sum(new_cases) as total_cases, sum(cast(new_deaths as int)) as total_deaths, sum(cast(new_deaths as int))/sum(new_cases)*100 as DeathPercentage
 from PortfolioProject..CovidDeaths
 where continent is not null
@@ -87,7 +87,7 @@ order by 1,2;
 
 ```
 ### Vaccination vs Population
-```
+```sql
 with PopvsVac (Continent, location, date, population, new_vaccinations, RollingPeopleVaccinated)
 as (
 select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
@@ -103,7 +103,7 @@ from PopvsVac;
 
 ```
 ### Temp Table
-```
+```sql
 drop Table if exists #PercentPopulationVaccinated;
 create Table #PercentPopulationVaccinated
 (
@@ -128,7 +128,7 @@ from #PercentPopulationVaccinated;
 
 ```
 ### View Creation
-```
+```sql
 create view PercentPopulationVaccinated as 
 select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , sum(convert(int, vac.new_vaccinations)) over (partition by dea.location order by dea.location, dea.date) as RollingPeopleVaccinated
@@ -142,12 +142,12 @@ select *
 from PercentPopulationVaccinated;
 
 ```
-### Technologies Used
+## Technologies Used
 SQL Server
 Portfolio Project Database (CovidDeaths, CovidVaccinations)
-### How to Run the Queries
+## How to Run the Queries
 Load the datasets (CovidDeaths and CovidVaccinations) into your SQL Server environment.
 Run the queries in the specified order.
 Review the results for each query to gain insights into the data.
-### Conclusion
+## Conclusion
 This project helps visualize the impact of COVID-19 across different countries and continents, shedding light on critical statistics such as death rates, infection rates, and vaccination progress.
