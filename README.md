@@ -34,3 +34,44 @@ select *
 from PortfolioProject..CovidDeaths
 where continent is not null
 order by 3,4;
+
+Total Cases vs Deaths
+sql
+Copy code
+select Location, Date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
+from PortfolioProject..CovidDeaths
+where location like '%states%'
+and continent is not null
+order by 1,2;
+Total Cases vs Population
+sql
+Copy code
+select Location, date, population, total_cases, (total_cases/population)*100 as PercentPopulationInfected
+from PortfolioProject..CovidDeaths
+order by 1,2;
+... (Continue with the remaining queries)
+
+Technologies Used
+SQL Server
+Portfolio Project Database (CovidDeaths, CovidVaccinations)
+How to Run the Queries
+Load the datasets (CovidDeaths and CovidVaccinations) into your SQL Server environment.
+Run the queries in the specified order.
+Review the results for each query to gain insights into the data.
+Conclusion
+This project helps visualize the impact of COVID-19 across different countries and continents, shedding light on critical statistics such as death rates, infection rates, and vaccination progress.
+
+markdown
+Copy code
+
+5. **Preview the README**:
+   - Once you’ve added the content, scroll down to the bottom of the GitHub editor, where you’ll see a **Preview** tab that shows how the file will look once published.
+
+6. **Commit the File**:
+   - After confirming everything looks correct, scroll down and click the **"Commit new file"** button to save the README to your repository.
+
+### Resources for Learning Markdown:
+- [GitHub Markdown Guide](https://guides.github.com/features/mastering-markdown/)
+- [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
+
+Once you've followed these steps, your README will appear just like the one I formatted earlier! Let me
